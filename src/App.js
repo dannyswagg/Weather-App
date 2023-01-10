@@ -38,13 +38,13 @@ function App() {
               </h1>
             ) : null}
           </div>
-          <div className="description">
+          <p className="description">
             {data.weather ? <p>{data.weather[0].main}</p> : null}
-          </div>
+          </p>
         </div>
 
         {data.name !== undefined && (
-          <div className="bottom" fixed="bottom">
+          <div className="bottom">
             <div className="feels">
               {data.main ? (
                 <p className="bold">
