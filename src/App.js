@@ -4,7 +4,7 @@ import rain from "./Assests/rain.png";
 import sun from "./Assests/sun.png";
 import therm from "./Assests/therm.png";
 import wind from "./Assests/windt.png";
-import cloud from "./Assests/cloud.png"
+import cloud from "./Assests/cloud.png";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="w-full">
-      <div className="relative mt-6 mb-5 w-[16rem] sm:w-[20rem] mx-auto">
+      <div className="relative mt-6 mb-5 w-[80%] sm:w-[20rem] mx-auto">
         <input
           type="text"
           value={location}
@@ -66,7 +66,7 @@ function App() {
         </div>
       </div>
       {/* displayed data */}
-      <div className="w-[16rem] sm:w-[20rem] text-center mx-auto">
+      <div className="w-[80%] sm:w-[20rem] text-center mx-auto">
         {(data.name && (
           <div className="text-center">
             <div className="card">
@@ -135,7 +135,7 @@ function App() {
                 <p className="bold">{data.wind.speed.toFixed()} mph</p>
               )}
               <p className="flex items-center">
-                Winds <img src={wind} alt="wind-icon" className="w-5 ml-1"/>
+                Winds <img src={wind} alt="wind-icon" className="w-5 ml-1" />
               </p>
             </div>
           </div>
