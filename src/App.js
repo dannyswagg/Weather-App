@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import rain from "./assests/rain.png";
-import sun from "./assests/sun.png";
-import therm from "./assests/therm.png";
-import wind from "./assests/windt.png";
-import cloud from "./assests/cloud.png"
+import rain from "./Assests/rain.png";
+import sun from "./Assests/sun.png";
+import therm from "./Assests/therm.png";
+import wind from "./Assests/windt.png";
+import cloud from "./Assests/cloud.png"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
