@@ -7,12 +7,20 @@ import wind from "./Assests/windt.png";
 import cloud from "./Assests/cloud.png";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Rain } from "react-rainfall";
+import ReactAnimatedWeather from "react-animated-weather";
+
+const defaults = {
+  icon: "WIND",
+  color: "white",
+  size: 50,
+  animate: true,
+};
 
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
   const [error, setError] = useState(null);
-
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=58fdfff6aa3d419baa4777accd44eb3a`;
 
   const searchLocation = async () => {
@@ -66,19 +74,27 @@ function App() {
         </div>
       </div>
       {/* displayed data */}
-      <div className="w-[80%] sm:w-[20rem] text-center mx-auto">
+      <div className="w-[80%] sm:w-[20rem] text-center mx-auto mb-10">
         {(data.name && (
           <div className="text-center">
             <div className="card">
-              <div className="flex items-center justify-center">
-                <h1 className="text-5xl text-center">{data.name}</h1>
-                <p>{data.sys.country}</p>
+              <div
+                style={{
+                  position: "relative",
+                }}
+              >
+                <Rain dropletOpacity={0.9} showImpact="false" />
+                <div className="flex items-center justify-center">
+                  <h1 className="text-5xl text-center">{data.name}</h1>
+                  <p>{data.sys.country}</p>
+                </div>
+
+                <img
+                  src={data.weather[0].main === "Clouds" ? rain : sun}
+                  alt="rainy-cloud"
+                  className="w-32 mx-auto my-2"
+                />
               </div>
-              <img
-                src={data.weather[0].main === "Clouds" ? rain : sun}
-                alt="rainy-cloud"
-                className="w-32 mx-auto my-2"
-              />
             </div>
             <div className="card">
               {data.main && (
@@ -130,18 +146,33 @@ function App() {
                 Degrees<span>&#176;</span>
               </p>
             </div>
-            <div className="wind">
-              {data.wind && (
-                <p className="bold">{data.wind.speed.toFixed()} mph</p>
-              )}
-              <p className="flex items-center">
-                Winds <img src={wind} alt="wind-icon" className="w-5 ml-1" />
-              </p>
-            </div>
           </div>
         )) || (
           <SkeletonTheme baseColor="#082529" highlightColor="#768081">
             <Skeleton className="h-24" count={3} />
+          </SkeletonTheme>
+        )}
+        {(data.name && (
+          <div className="card font-bold text-sm">
+            <div className="wind">
+              {data.wind && (
+                <p className="bold text-xl">{data.wind.speed.toFixed()} mph</p>
+              )}
+            </div>
+            <div className="flex items-center justify-center">
+              <img src={wind} alt="wind-icon" className="w-10 mr-5" />
+              <ReactAnimatedWeather
+                icon={defaults.icon}
+                color={defaults.color}
+                size={defaults.size}
+                animate={defaults.animate}
+              />
+            </div>
+            <p className="text-md">Wind Speed</p>
+          </div>
+        )) || (
+          <SkeletonTheme baseColor="#082529" highlightColor="#768081">
+            <Skeleton className="h-24" />
           </SkeletonTheme>
         )}
       </div>
